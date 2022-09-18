@@ -1,18 +1,33 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { GameController } from "phosphor-react";
+import { useEffect, useState } from "react";
+import { GameResponse } from "../App";
 import { CheckField } from "./Form/CheckField";
 import { MultipleSelectionField } from "./Form/MultipleSelectionField";
+import { SelectField } from "./Form/SelectField";
 import { TextField } from "./Form/TextField";
 import { TimeSpanField } from "./Form/TimeSpanField";
 
 export function NewAdForm () {
+
+    const [games, setGames] = useState<GameResponse[]>([])
+
+    useEffect(()=>{
+        fetch('http://localhost:3333/games')
+            .then(res => res.json())
+            .then(data => {
+                setGames(data)
+            })
+    },[])
+
     return (
         <form className="mt-8 flex flex-col gap-4">
             
-            <TextField 
+            <SelectField 
                 id="game"
                 label="Qual o Jogo?"
                 placeholder="Selecione o que você que Jogar"
+                options={games}
             />
             
             <TextField 

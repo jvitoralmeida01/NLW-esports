@@ -4,7 +4,7 @@ import { GameCard } from './components/GameCard'
 import Banner from './components/Banner'
 import { useEffect, useState } from 'react'
 
-interface GameResponse {
+export interface GameResponse {
     id          : string,
     title       : string,
     bannerUrl   : string,

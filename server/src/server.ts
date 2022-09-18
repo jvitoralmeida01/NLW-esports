@@ -12,7 +12,6 @@ app.use(cors())
 const prisma = new PrismaClient()
 
 app.get('/games', async (req, res) => {
-
     const games = await prisma.game.findMany({
         include: {
             _count: {
